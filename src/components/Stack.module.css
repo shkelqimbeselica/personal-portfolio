@@ -55,5 +55,8 @@
 }
 
 @media (max-width: 768px) {
+  .stack { padding: 48px 0; }
+  .label { margin-bottom: 32px; }
   .group { grid-template-columns: 1fr; gap: 10px; }
+  .tag { font-size: 12px; padding: 4px 10px; }
 }

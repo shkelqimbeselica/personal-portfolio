@@ -62,5 +62,9 @@
 }
 
 @media (max-width: 768px) {
-  .inner { grid-template-columns: 1fr; gap: 40px; }
+  .ai { padding: 48px 0; }
+  .label { margin-bottom: 32px; }
+  .inner { grid-template-columns: 1fr; gap: 32px; }
+  .statement { font-size: 19px; }
+  .body { font-size: 14px; }
 }

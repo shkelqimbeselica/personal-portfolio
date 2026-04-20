@@ -62,6 +62,9 @@
 .accent { color: var(--accent); }
 
 @media (max-width: 768px) {
-  .inner { grid-template-columns: 1fr; }
+  .hero { padding-top: 88px; padding-bottom: 48px; }
+  .inner { grid-template-columns: 1fr; gap: 24px; }
   .aside { display: none; }
+  .meta { flex-wrap: wrap; gap: 8px; font-size: 10px; }
+  .sub { font-size: 15px; }
 }

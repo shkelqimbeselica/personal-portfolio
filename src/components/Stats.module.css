@@ -32,6 +32,12 @@
 
 @media (max-width: 768px) {
   .grid { grid-template-columns: 1fr 1fr; }
-  .item { border-right: none; border-bottom: 1px solid var(--border); padding: 36px var(--pad-x); }
+  .item { border-right: none; border-bottom: 1px solid var(--border); padding: 32px var(--pad-x); }
+  .item:nth-child(odd) { border-right: 1px solid var(--border); }
   .item:last-child { border-bottom: none; }
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+  .item { border-right: none !important; }
 }

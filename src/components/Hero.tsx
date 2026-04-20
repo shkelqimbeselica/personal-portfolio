@@ -1,4 +1,7 @@
+import { motion } from 'framer-motion'
 import styles from './Hero.module.css'
+
+const ease = [0.22, 0.68, 0, 1.1] as const
 
 export default function Hero() {
   return (
@@ -6,23 +9,43 @@ export default function Hero() {
       <div className="container">
         <div className={styles.inner}>
           <div>
-            <div className={`${styles.meta} reveal`}>
+            <motion.div
+              className={styles.meta}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease }}
+            >
               <span>Senior Frontend Engineer</span>
               <span className={styles.sep}>/</span>
               <span>Frontend Lead · Ritech International AG</span>
-            </div>
-            <h1 className={`${styles.h1} reveal reveal-delay-1`}>
+            </motion.div>
+            <motion.h1
+              className={styles.h1}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease }}
+            >
               Senior frontend engineer building production React for Nissan, Honda, and Samsung.
-            </h1>
-            <p className={`${styles.sub} reveal reveal-delay-2`}>
+            </motion.h1>
+            <motion.p
+              className={styles.sub}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease }}
+            >
               Architecting design systems and shipping LLM-powered features. Currently leading frontend at Ritech.
-            </p>
+            </motion.p>
           </div>
-          <div className={`${styles.aside} reveal reveal-delay-1`}>
+          <motion.div
+            className={styles.aside}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease }}
+          >
             <div className={styles.asideItem}>Prishtina, Kosovo</div>
             <div className={styles.asideItem}>7 yrs production React</div>
             <div className={`${styles.asideItem} ${styles.accent}`}>BSc AI in progress</div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

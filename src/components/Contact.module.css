@@ -58,3 +58,10 @@
   transition: transform 0.15s, color 0.15s;
 }
 .row:hover .arrow { transform: translateX(4px); color: var(--accent); }
+
+@media (max-width: 768px) {
+  .contact { padding: 48px 0; }
+  .label { margin-bottom: 32px; }
+  .inner { max-width: 100%; }
+  .rowValue { font-size: 14px; word-break: break-all; }
+}

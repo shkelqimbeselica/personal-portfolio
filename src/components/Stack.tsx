@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+import { Reveal } from './Motion'
 import styles from './Stack.module.css'
 
 interface StackGroup {
@@ -41,28 +43,43 @@ const stack: StackGroup[] = [
   },
 ]
 
+const tagVariants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: { opacity: 1, scale: 1 },
+}
+
 export default function Stack() {
   return (
     <section id="stack" className={styles.stack}>
       <div className="container">
-        <div className={`${styles.label} reveal`}>
-          <span>Stack</span>
-        </div>
+        <Reveal>
+          <div className={styles.label}><span>Stack</span></div>
+        </Reveal>
         <div className={styles.grid}>
-          {stack.map((group) => (
-            <div key={group.category} className={`${styles.group} reveal`}>
-              <div className={styles.cat}>{group.category}</div>
-              <div className={styles.tags}>
-                {group.tags.map((t) => (
-                  <span
-                    key={t.label}
-                    className={`${styles.tag} ${t.accent ? styles.tagAccent : ''}`}
-                  >
-                    {t.label}
-                  </span>
-                ))}
+          {stack.map((group, gi) => (
+            <Reveal key={group.category} delay={gi * 0.08}>
+              <div className={styles.group}>
+                <div className={styles.cat}>{group.category}</div>
+                <motion.div
+                  className={styles.tags}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ staggerChildren: 0.03, delayChildren: gi * 0.08 }}
+                >
+                  {group.tags.map((t) => (
+                    <motion.span
+                      key={t.label}
+                      className={`${styles.tag} ${t.accent ? styles.tagAccent : ''}`}
+                      variants={tagVariants}
+                      transition={{ duration: 0.3, ease: [0.22, 0.68, 0, 1.1] }}
+                    >
+                      {t.label}
+                    </motion.span>
+                  ))}
+                </motion.div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

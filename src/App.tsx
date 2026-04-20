@@ -1,4 +1,3 @@
-import { useReveal } from './hooks/useReveal'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Work from './components/Work'
@@ -10,10 +9,8 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
-  const ref = useReveal()
-
   return (
-    <div ref={ref}>
+    <div>
       <Nav />
       <Hero />
       <Work />

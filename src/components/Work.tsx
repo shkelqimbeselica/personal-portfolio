@@ -1,4 +1,5 @@
-import { useCallback } from 'react'
+import { motion } from 'framer-motion'
+import { Reveal } from './Motion'
 import styles from './Work.module.css'
 
 interface WorkProject {
@@ -15,7 +16,7 @@ const projects: WorkProject[] = [
   {
     num: '01',
     client: 'US Law Firm Platform',
-    context: 'Ritech · Jun 2025– · Frontend Lead',
+    context: 'Ritech · Jun 2025–Present · Frontend Lead',
     metric: 'Current project',
     metricAccent: true,
     desc: 'Led the frontend migration to a modern React/TypeScript stack with Redux, Shadcn/ui, and Tailwind. Took full ownership of architecture, established state management and component patterns, led code reviews, and mentored frontend engineers. Cut load times by 40% and ensured WCAG accessibility compliance.',
@@ -61,7 +62,7 @@ const projects: WorkProject[] = [
   {
     num: '04',
     client: 'Nissan · Mitsubishi · Honda',
-    context: 'Ritech · Internal Social Platform · Mar 2022–Jun 2024',
+    context: 'Ritech · Mar 2022–Jun 2024 · Software Engineer',
     metric: '3+ products on one design system',
     desc: 'Built an internal social and employee engagement platform adopted by Nissan, Mitsubishi, and Honda — featuring messaging, content sharing, and collaboration tools. Contributed across web (React), mobile (React Native), and backend (Node.js/GraphQL), delivering end-to-end features. Architected a shared design system powering 3+ products from a single source of truth.',
     tags: [
@@ -76,7 +77,7 @@ const projects: WorkProject[] = [
   {
     num: '05',
     client: 'Headless CMS for Newsrooms',
-    context: 'Gjirafa, Inc. · May 2021–Feb 2022',
+    context: 'Gjirafa, Inc. · May 2021–Feb 2022 · Software Engineer',
     desc: 'Responsible for most of the REST APIs in a headless CMS built for newsroom workflows — code-free page building, unified collaboration, role-based access control, user invitations, permissions management, media uploads, nested folders, CRON job scheduling, and external API sync. Also built notifications, discussions, user preferences, and Google Drive-style file management. Switched to Vue for this role.',
     tags: [
       { label: 'Vue', highlight: true },
@@ -90,7 +91,7 @@ const projects: WorkProject[] = [
   {
     num: '06',
     client: 'Samsung Global A/B Testing',
-    context: 'Sogody · Samsung / Cheil · Feb–May 2021',
+    context: 'Sogody · Client: Samsung / Cheil · Feb–May 2021 · Software Engineer',
     desc: 'Developed and deployed A/B tests for Samsung across UK, France, Germany, Spain and more via Adobe Target — targeting S20/S21 owners and iPhone switchers. Delivered pixel-perfect UIs from Figma specs and used JavaScript to integrate Samsung APIs for live pricing, sale status, and SKU retrieval to identify target devices.',
     tags: [
       { label: 'JavaScript', highlight: true },
@@ -103,7 +104,7 @@ const projects: WorkProject[] = [
   {
     num: '07',
     client: 'Enterprise React Applications',
-    context: 'Quality Smart Application · 2018–21 · React Developer',
+    context: 'Quality Smart Application · Nov 2018–Jan 2021 · React Developer',
     desc: 'Built complex responsive layouts and core product features using React, Redux, and REST API integrations. Developed Redux action creators and reducers, working extensively with React component lifecycle patterns across multiple client projects.',
     tags: [
       { label: 'React', highlight: true },
@@ -115,46 +116,36 @@ const projects: WorkProject[] = [
   },
 ]
 
-function WorkItem({ project }: { project: WorkProject }) {
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const el = e.currentTarget
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `translate(${x * 3}px, ${y * 2}px)`
-  }, [])
-
-  const handleMouseLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = ''
-  }, [])
-
+function WorkItem({ project, index }: { project: WorkProject; index: number }) {
   return (
-    <div
-      className={`${styles.item} reveal`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className={styles.num}>{project.num}</div>
-      <div className={styles.left}>
-        <div className={styles.client}>{project.client}</div>
-        <div className={styles.context}>{project.context}</div>
-        {project.metric && (
-          <div className={`${styles.metric} ${project.metricAccent ? styles.metricAccent : ''}`}>
-            {project.metric}
-          </div>
-        )}
-      </div>
-      <div className={styles.right}>
-        <p className={styles.desc}>{project.desc}</p>
-        <div className={styles.tags}>
-          {project.tags.map((t) => (
-            <span key={t.label} className={`${styles.tag} ${t.highlight ? styles.tagHi : ''}`}>
-              {t.label}
-            </span>
-          ))}
+    <Reveal delay={index * 0.06}>
+      <motion.div
+        className={styles.item}
+        whileHover={{ x: 4 }}
+        transition={{ duration: 0.2 }}
+      >
+        <div className={styles.num}>{project.num}</div>
+        <div className={styles.left}>
+          <div className={styles.client}>{project.client}</div>
+          <div className={styles.context}>{project.context}</div>
+          {project.metric && (
+            <div className={`${styles.metric} ${project.metricAccent ? styles.metricAccent : ''}`}>
+              {project.metric}
+            </div>
+          )}
         </div>
-      </div>
-    </div>
+        <div className={styles.right}>
+          <p className={styles.desc}>{project.desc}</p>
+          <div className={styles.tags}>
+            {project.tags.map((t) => (
+              <span key={t.label} className={`${styles.tag} ${t.highlight ? styles.tagHi : ''}`}>
+                {t.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </Reveal>
   )
 }
 
@@ -162,12 +153,14 @@ export default function Work() {
   return (
     <section id="work" className={styles.work}>
       <div className="container">
-        <div className={`${styles.label} reveal`}>
-          <span>Selected Work</span>
-        </div>
+        <Reveal>
+          <div className={styles.label}>
+            <span>Selected Work</span>
+          </div>
+        </Reveal>
         <div className={styles.list}>
-          {projects.map((p) => (
-            <WorkItem key={p.num} project={p} />
+          {projects.map((p, i) => (
+            <WorkItem key={p.num} project={p} index={i} />
           ))}
         </div>
       </div>

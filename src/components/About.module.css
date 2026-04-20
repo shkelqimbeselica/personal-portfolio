@@ -50,5 +50,8 @@
 }
 
 @media (max-width: 768px) {
+  .about { padding: 48px 0; }
+  .label { margin-bottom: 32px; }
   .grid { grid-template-columns: 1fr; gap: 40px; }
+  .bio { font-size: 15px; }
 }

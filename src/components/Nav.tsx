@@ -11,6 +11,7 @@ const links = [
 
 export default function Nav() {
   const [active, setActive] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
@@ -27,15 +28,31 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Close menu on resize to desktop
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 768) setMenuOpen(false)
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  // Prevent body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
         <a href="#hero" className={styles.name}>Shkëlqim Beselica</a>
-        <ul className={styles.links}>
+        <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
+                onClick={() => setMenuOpen(false)}
                 className={`${l.isContact ? styles.contactLink : ''} ${
                   active === l.href.slice(1) ? styles.active : ''
                 }`}
@@ -45,6 +62,14 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+        <button
+          className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+        </button>
       </div>
     </nav>
   )

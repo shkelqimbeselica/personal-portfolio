@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+import { Reveal } from './Motion'
 import styles from './AI.module.css'
 
 const items = [
@@ -10,15 +12,20 @@ const items = [
   'AI-assisted debugging and refactoring',
 ]
 
+const listItem = {
+  hidden: { opacity: 0, x: -12 },
+  visible: { opacity: 1, x: 0 },
+}
+
 export default function AI() {
   return (
     <section id="ai" className={styles.ai}>
       <div className="container">
-        <div className={`${styles.label} reveal`}>
-          <span>AI Practice</span>
-        </div>
+        <Reveal>
+          <div className={styles.label}><span>AI Practice</span></div>
+        </Reveal>
         <div className={styles.inner}>
-          <div className="reveal">
+          <Reveal>
             <div className={styles.statement}>I build with AI. Not just use it.</div>
             <p className={styles.body}>
               Daily use of Claude Code, Cursor, and Copilot has compressed what used to take days
@@ -26,12 +33,25 @@ export default function AI() {
               that can reason across multiple steps, engineering context windows that produce
               deterministic outputs, and closing the loop between design and shipped code.
             </p>
-          </div>
-          <div className={`${styles.list} reveal reveal-delay-1`}>
+          </Reveal>
+          <motion.div
+            className={styles.list}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ staggerChildren: 0.06, delayChildren: 0.15 }}
+          >
             {items.map((item) => (
-              <div key={item} className={styles.listItem}>{item}</div>
+              <motion.div
+                key={item}
+                className={styles.listItem}
+                variants={listItem}
+                transition={{ duration: 0.4, ease: [0.22, 0.68, 0, 1.1] }}
+              >
+                {item}
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
