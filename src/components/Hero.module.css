@@ -142,8 +142,10 @@
 }
 
 .logo {
-  height: 22px;
+  height: 20px;
   width: auto;
+  max-width: 90px;
+  object-fit: contain;
   opacity: 0.45;
   filter: brightness(0) invert(1);
   transition: opacity 0.3s;
@@ -211,5 +213,5 @@
   .marqueeLabel { display: none; }
   .marqueeTrack { width: 100%; }
   .marqueeItem { padding: 0 18px; }
-  .logo { height: 18px; }
+  .logo { height: 16px; max-width: 72px; }
 }
