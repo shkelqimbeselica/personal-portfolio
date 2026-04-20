@@ -1,3 +1,4 @@
+import GridBackground from './components/GridBackground'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Work from './components/Work'
@@ -10,16 +11,19 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div>
-      <Nav />
-      <Hero />
-      <Work />
-      <Stats />
-      <About />
-      <Stack />
-      <AI />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      <GridBackground />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <Nav />
+        <Hero />
+        <Work />
+        <Stats />
+        <About />
+        <Stack />
+        <AI />
+        <Contact />
+        <Footer />
+      </div>
+    </>
   )
 }

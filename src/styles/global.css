@@ -48,3 +48,15 @@ img { display: block; max-width: 100%; }
 }
 
 /* Framer Motion handles all scroll animations */
+
+/* Subtle selection color */
+::selection {
+  background: rgba(150, 255, 188, 0.2);
+  color: var(--text);
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }

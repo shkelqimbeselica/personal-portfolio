@@ -25,7 +25,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease }}
             >
-              Senior frontend engineer building production React for Nissan, Honda, and Samsung.
+              <span className={styles.highlight}>Senior frontend engineer</span> building production React for Nissan, Honda, and Samsung.
             </motion.h1>
             <motion.p
               className={styles.sub}
@@ -35,6 +35,15 @@ export default function Hero() {
             >
               Architecting design systems and shipping LLM-powered features. Currently leading frontend at Ritech.
             </motion.p>
+            <motion.div
+              className={styles.statusLine}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <span className={styles.statusDot} />
+              <span>Available for opportunities</span>
+            </motion.div>
           </div>
           <motion.div
             className={styles.aside}
@@ -48,6 +57,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+      <div className={styles.gradientLine} />
     </section>
   )
 }

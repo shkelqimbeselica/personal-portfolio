@@ -1,4 +1,4 @@
-.work { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.work { padding: 80px 0; border-bottom: 1px solid var(--border); position: relative; }
 
 .label {
   font-family: var(--font-mono);
@@ -27,8 +27,42 @@
   padding: 48px 0;
   border-bottom: 1px solid var(--border);
   cursor: default;
+  position: relative;
 }
 .item:last-child { border-bottom: none; }
+
+/* Glow effect on hover */
+.item::before {
+  content: '';
+  position: absolute;
+  inset: -1px -20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(150, 255, 188, 0.03), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+.item:hover::before { opacity: 1; }
+
+/* Accent glow line left */
+.item::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 20%;
+  bottom: 20%;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.35s, top 0.35s, bottom 0.35s;
+  pointer-events: none;
+}
+.item:hover::after {
+  opacity: 0.5;
+  top: 10%;
+  bottom: 10%;
+}
 
 .num {
   font-size: 80px;
@@ -37,10 +71,10 @@
   line-height: 1;
   letter-spacing: -0.04em;
   padding-top: 4px;
-  transition: color 0.2s;
+  transition: color 0.3s;
   user-select: none;
 }
-.item:hover .num { color: var(--border-mid); }
+.item:hover .num { color: var(--accent-dim); }
 
 .left {
   display: flex;
@@ -55,7 +89,9 @@
   letter-spacing: -0.02em;
   color: var(--text);
   line-height: 1.25;
+  transition: color 0.2s;
 }
+.item:hover .client { color: var(--accent); }
 
 .context {
   font-family: var(--font-mono);
@@ -112,7 +148,9 @@
   border: 1px solid var(--border-mid);
   border-radius: 2px;
   color: var(--text-3);
+  transition: border-color 0.2s, color 0.2s;
 }
+.tag:hover { border-color: var(--text-3); color: var(--text-2); }
 .tagHi { border-color: var(--accent-dim); color: var(--accent); }
 
 /* Tablet */
@@ -122,6 +160,7 @@
     gap: 12px;
     padding: 36px 0;
   }
+  .item::before, .item::after { display: none; }
   .num { display: none; }
   .right { padding-top: 0; }
 }
