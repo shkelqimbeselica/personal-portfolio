@@ -26,7 +26,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease }}
             >
-              <span className={styles.highlight}>Senior frontend engineer</span> building production React for Nissan, Honda, and Samsung.
+              <span className={styles.highlight}>Senior frontend engineer</span> building production React at scale for global enterprise clients.
             </motion.h1>
             <motion.p
               className={styles.sub}
@@ -48,6 +48,35 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+      <motion.div
+          className={styles.marqueeWrap}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6, ease }}
+        >
+          <div className={styles.marqueeLabel}>Shipped for</div>
+          <div className={styles.marqueeTrack}>
+            <div className={styles.marqueeInner}>
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className={styles.marqueeSet}>
+                  {[
+                    { name: 'Nissan', logo: '/logos/nissan.svg' },
+                    { name: 'Honda', logo: '/logos/honda.svg' },
+                    { name: 'Mitsubishi', logo: '/logos/mitsubishi.svg' },
+                    { name: 'Samsung', logo: '/logos/samsung.svg' },
+                    { name: 'Ritech', logo: '/logos/ritech.svg' },
+                    { name: 'Gjirafa', logo: '/logos/gjirafa.svg' },
+                    { name: 'Sogody', logo: '/logos/sogody.svg' },
+                  ].map((brand) => (
+                    <span key={brand.name} className={styles.marqueeItem}>
+                      <img src={brand.logo} alt={brand.name} className={styles.logo} />
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       <div className={styles.gradientLine} />
     </section>
   )
