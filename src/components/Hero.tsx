@@ -60,16 +60,21 @@ export default function Hero() {
               {[...Array(2)].map((_, i) => (
                 <div key={i} className={styles.marqueeSet}>
                   {[
-                    { name: 'Nissan', logo: '/logos/nissan.svg' },
-                    { name: 'Honda', logo: '/logos/honda.svg' },
-                    { name: 'Mitsubishi', logo: '/logos/mitsubishi.svg' },
-                    { name: 'Samsung', logo: '/logos/samsung.svg' },
-                    { name: 'Ritech', logo: '/logos/ritech.svg' },
-                    { name: 'Gjirafa', logo: '/logos/gjirafa.svg' },
-                    { name: 'Sogody', logo: '/logos/sogody.svg' },
+                    { name: 'Nissan', logo: '/logos/nissan.svg', w: 28 },
+                    { name: 'Honda', logo: '/logos/honda.svg', w: 32 },
+                    { name: 'Mitsubishi', logo: '/logos/mitsubishi.svg', w: 26 },
+                    { name: 'Samsung', logo: '/logos/samsung.svg', w: 90 },
+                    { name: 'Ritech', logo: '/logos/ritech.svg', w: 80 },
+                    { name: 'Gjirafa', logo: '/logos/gjirafa.svg', w: 85 },
+                    { name: 'Sogody', logo: '/logos/sogody.svg', w: 75 },
                   ].map((brand) => (
                     <span key={brand.name} className={styles.marqueeItem}>
-                      <img src={brand.logo} alt={brand.name} className={styles.logo} />
+                      <img
+                        src={brand.logo}
+                        alt={brand.name}
+                        className={styles.logo}
+                        style={{ width: brand.w, height: 'auto' }}
+                      />
                     </span>
                   ))}
                 </div>

@@ -139,17 +139,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 32px;
-  margin: 0 16px;
+  margin: 0 24px;
   flex-shrink: 0;
 }
 
 .logo {
-  width: 100px;
-  height: 32px;
-  object-fit: contain;
-  opacity: 0.6;
+  display: block;
+  opacity: 0.55;
   filter: brightness(0) invert(1);
   transition: opacity 0.3s;
 }
@@ -215,6 +211,5 @@
   .marqueeWrap { margin-top: 28px; padding: 0 var(--pad-x); gap: 16px; }
   .marqueeLabel { display: none; }
   .marqueeTrack { width: 100%; }
-  .marqueeItem { width: 72px; height: 24px; margin: 0 10px; }
-  .logo { width: 72px; height: 24px; }
+  .marqueeItem { margin: 0 14px; }
 }
