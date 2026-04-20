@@ -9,24 +9,6 @@
   transition: border-color 0.3s;
 }
 
-/* Gradient shimmer on nav bottom */
-.nav::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-dim), var(--accent), var(--accent-dim), transparent);
-  background-size: 200% 100%;
-  animation: navShimmer 4s ease-in-out infinite;
-  opacity: 0.4;
-}
-
-@keyframes navShimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
 
 .inner {
   max-width: var(--max-w);
@@ -39,27 +21,40 @@
 }
 
 .name {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  z-index: 101;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: transparent;
+  background: linear-gradient(90deg, var(--text), var(--accent), var(--text));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: nameShimmer 6s ease-in-out infinite;
+  z-index: 201;
+  position: relative;
 }
 
-.links {
+@keyframes nameShimmer {
+  0% { background-position: 100% 0; }
+  50% { background-position: 0% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* Desktop links */
+.desktopLinks {
   display: flex;
   align-items: center;
   gap: 32px;
   list-style: none;
 }
 
-.links a {
+.desktopLinks a {
   font-size: 13px;
   color: var(--text-2);
   transition: color 0.15s;
   position: relative;
 }
-.links a:hover { color: var(--text); }
+.desktopLinks a:hover { color: var(--text); }
 
 .active { color: var(--text) !important; }
 
@@ -80,7 +75,8 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 101;
+  z-index: 201;
+  position: relative;
   padding: 0;
 }
 
@@ -89,7 +85,8 @@
   width: 100%;
   height: 2px;
   background: var(--text);
-  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
 }
 
 .burgerOpen span:first-child {
@@ -99,28 +96,49 @@
   transform: translateY(-3.5px) rotate(-45deg);
 }
 
+/* Mobile overlay — rendered outside <nav> to escape stacking context */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(11, 11, 12, 0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.overlayOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlayLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.overlayLinks a {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.overlayLinks a:hover { color: var(--text); }
+
 @media (max-width: 768px) {
   .burger { display: flex; }
+  .desktopLinks { display: none; }
+}
 
-  .links {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--bg);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 36px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s;
-  }
-
-  .linksOpen {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .links a {
-    font-size: 20px;
-  }
+@media (min-width: 769px) {
+  .overlay { display: none; }
 }

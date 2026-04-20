@@ -90,7 +90,7 @@ const projects: WorkProject[] = [
   },
   {
     num: '06',
-    client: 'Samsung Global A/B Testing',
+    client: 'Samsung Global',
     context: 'Sogody · Client: Samsung / Cheil · Feb–May 2021 · Software Engineer',
     desc: 'Developed and deployed A/B tests for Samsung across UK, France, Germany, Spain and more via Adobe Target — targeting S20/S21 owners and iPhone switchers. Delivered pixel-perfect UIs from Figma specs and used JavaScript to integrate Samsung APIs for live pricing, sale status, and SKU retrieval to identify target devices.',
     tags: [

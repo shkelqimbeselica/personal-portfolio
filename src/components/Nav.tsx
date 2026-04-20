@@ -44,10 +44,42 @@ export default function Nav() {
   }, [menuOpen])
 
   return (
-    <nav className={styles.nav}>
-      <div className={styles.inner}>
-        <a href="#hero" className={styles.name}>Shkëlqim Beselica</a>
-        <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
+    <>
+      <nav className={styles.nav}>
+        <div className={styles.inner}>
+          <a href="#hero" className={styles.name}>Shkëlqim Beselica</a>
+          {/* Desktop links */}
+          <ul className={styles.desktopLinks}>
+            {links.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className={`${l.isContact ? styles.contactLink : ''} ${
+                    active === l.href.slice(1) ? styles.active : ''
+                  }`}
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <button
+            className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile overlay — rendered outside nav to avoid stacking context issues */}
+      <div
+        className={`${styles.overlay} ${menuOpen ? styles.overlayOpen : ''}`}
+        onClick={() => setMenuOpen(false)}
+      >
+        <ul className={styles.overlayLinks} onClick={(e) => e.stopPropagation()}>
           {links.map((l) => (
             <li key={l.href}>
               <a
@@ -62,15 +94,7 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-        <button
-          className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span />
-          <span />
-        </button>
       </div>
-    </nav>
+    </>
   )
 }

@@ -26,7 +26,7 @@ export default function AI() {
         </Reveal>
         <div className={styles.inner}>
           <Reveal>
-            <div className={styles.statement}>I build with AI. Not just use it.</div>
+            <div className={styles.statement}>From prompt to production — engineering AI systems that ship.</div>
             <p className={styles.body}>
               Daily use of Claude Code, Cursor, and Copilot has compressed what used to take days
               into hours. But the more interesting work is architectural — designing agent systems

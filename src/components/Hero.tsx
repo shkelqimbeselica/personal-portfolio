@@ -17,7 +17,7 @@ export default function Hero() {
             >
               <span>Senior Frontend Engineer</span>
               <span className={styles.sep}>/</span>
-              <span>Frontend Lead · Ritech International AG</span>
+              <span>Frontend Lead</span>
             </motion.div>
             <motion.h1
               className={styles.h1}
@@ -35,13 +35,6 @@ export default function Hero() {
             >
               Architecting design systems and shipping LLM-powered features. Currently leading frontend at Ritech.
             </motion.p>
-            <motion.div
-              className={styles.statusLine}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-            </motion.div>
           </div>
           <motion.div
             className={styles.aside}
@@ -49,7 +42,6 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease }}
           >
-            <div className={styles.asideItem}>Prishtina, Kosovo</div>
             <div className={styles.asideItem}>7 yrs production React</div>
             <div className={`${styles.asideItem} ${styles.accent}`}>BSc AI in progress</div>
           </motion.div>

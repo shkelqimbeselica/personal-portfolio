@@ -18,26 +18,31 @@ const stats: StatData[] = [
 
 function CountUp({ value, suffix, accent }: { value: number; suffix: string; accent?: boolean }) {
   const [count, setCount] = useState(0)
+  const [done, setDone] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   useEffect(() => {
     if (!inView) return
 
-    const duration = 1200
-    const steps = 40
+    const duration = 1600
+    const steps = 60
     const stepTime = duration / steps
     let current = 0
 
     const timer = setInterval(() => {
       current++
       const progress = current / steps
-      // ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.round(eased * value))
+      // spring-like overshoot ease
+      const eased = progress < 0.8
+        ? 1 - Math.pow(1 - progress * 1.25, 4)
+        : 1 + Math.sin((progress - 0.8) * Math.PI * 5) * 0.02 * (1 - progress) * 5
+
+      setCount(Math.round(Math.min(eased, 1.05) * value))
 
       if (current >= steps) {
         setCount(value)
+        setDone(true)
         clearInterval(timer)
       }
     }, stepTime)
@@ -46,9 +51,21 @@ function CountUp({ value, suffix, accent }: { value: number; suffix: string; acc
   }, [inView, value])
 
   return (
-    <div ref={ref} className={`${styles.num} ${accent ? styles.accent : ''}`}>
-      {count}{suffix}
-    </div>
+    <motion.div
+      ref={ref}
+      className={`${styles.num} ${accent ? styles.accent : ''}`}
+      initial={{ filter: 'blur(8px)', opacity: 0 }}
+      animate={inView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <motion.span
+        animate={done ? { scale: [1, 1.08, 1] } : {}}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        style={{ display: 'inline-block' }}
+      >
+        {count}{suffix}
+      </motion.span>
+    </motion.div>
   )
 }
 

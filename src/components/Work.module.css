@@ -148,9 +148,9 @@
   border: 1px solid var(--border-mid);
   border-radius: 2px;
   color: var(--text-3);
-  transition: border-color 0.2s, color 0.2s;
+  cursor: default;
+  user-select: none;
 }
-.tag:hover { border-color: var(--text-3); color: var(--text-2); }
 .tagHi { border-color: var(--accent-dim); color: var(--accent); }
 
 /* Tablet */
