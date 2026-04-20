@@ -146,10 +146,8 @@
 }
 
 .logo {
-  max-height: 100%;
-  max-width: 100%;
-  width: auto;
-  height: auto;
+  width: 100px;
+  height: 32px;
   object-fit: contain;
   opacity: 0.6;
   filter: brightness(0) invert(1);
@@ -217,5 +215,6 @@
   .marqueeWrap { margin-top: 28px; padding: 0 var(--pad-x); gap: 16px; }
   .marqueeLabel { display: none; }
   .marqueeTrack { width: 100%; }
-  .marqueeItem { width: 80px; height: 26px; margin: 0 12px; }
+  .marqueeItem { width: 72px; height: 24px; margin: 0 10px; }
+  .logo { width: 72px; height: 24px; }
 }
