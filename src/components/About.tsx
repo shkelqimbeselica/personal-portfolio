@@ -1,4 +1,5 @@
 import { Reveal } from './Motion'
+import TextScramble from './TextScramble'
 import styles from './About.module.css'
 
 const facts = [
@@ -14,7 +15,7 @@ export default function About() {
     <section id="about" className={styles.about}>
       <div className="container">
         <Reveal>
-          <div className={styles.label}><span>About</span></div>
+          <div className={styles.label}><TextScramble text="About" /></div>
         </Reveal>
         <div className={styles.grid}>
           <Reveal>

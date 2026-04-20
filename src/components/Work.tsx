@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Reveal } from './Motion'
+import TextScramble from './TextScramble'
 import styles from './Work.module.css'
 
 interface WorkProject {
@@ -155,7 +156,7 @@ export default function Work() {
       <div className="container">
         <Reveal>
           <div className={styles.label}>
-            <span>Selected Work</span>
+            <TextScramble text="Selected Work" />
           </div>
         </Reveal>
         <div className={styles.list}>

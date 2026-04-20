@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Reveal } from './Motion'
+import TextScramble from './TextScramble'
 import styles from './AI.module.css'
 
 const items = [
@@ -22,7 +23,7 @@ export default function AI() {
     <section id="ai" className={styles.ai}>
       <div className="container">
         <Reveal>
-          <div className={styles.label}><span>AI Practice</span></div>
+          <div className={styles.label}><TextScramble text="AI Practice" /></div>
         </Reveal>
         <div className={styles.inner}>
           <Reveal>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Reveal } from './Motion'
+import TextScramble from './TextScramble'
 import styles from './Stack.module.css'
 
 interface StackGroup {
@@ -53,7 +54,7 @@ export default function Stack() {
     <section id="stack" className={styles.stack}>
       <div className="container">
         <Reveal>
-          <div className={styles.label}><span>Stack</span></div>
+          <div className={styles.label}><TextScramble text="Stack" /></div>
         </Reveal>
         <div className={styles.grid}>
           {stack.map((group, gi) => (

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import TextScramble from './TextScramble'
 import styles from './Hero.module.css'
 
 const ease = [0.22, 0.68, 0, 1.1] as const
@@ -15,9 +16,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
             >
-              <span>Senior Frontend Engineer</span>
+              <TextScramble text="Senior Frontend Engineer" delay={0.3} />
               <span className={styles.sep}>/</span>
-              <span>Frontend Lead</span>
+              <TextScramble text="Frontend Lead" delay={0.5} />
             </motion.div>
             <motion.h1
               className={styles.h1}

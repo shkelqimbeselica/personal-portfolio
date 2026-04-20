@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import Magnetic from './Magnetic'
+import TextScramble from './TextScramble'
 import styles from './Nav.module.css'
 
 const links = [
@@ -47,19 +49,23 @@ export default function Nav() {
     <>
       <nav className={styles.nav}>
         <div className={styles.inner}>
-          <a href="#hero" className={styles.name}>Shkëlqim Beselica</a>
+          <a href="#hero" className={styles.name}>
+            <TextScramble text="Shkëlqim Beselica" delay={0.1} />
+          </a>
           {/* Desktop links */}
           <ul className={styles.desktopLinks}>
             {links.map((l) => (
               <li key={l.href}>
-                <a
-                  href={l.href}
-                  className={`${l.isContact ? styles.contactLink : ''} ${
-                    active === l.href.slice(1) ? styles.active : ''
-                  }`}
-                >
-                  {l.label}
-                </a>
+                <Magnetic strength={0.25}>
+                  <a
+                    href={l.href}
+                    className={`${l.isContact ? styles.contactLink : ''} ${
+                      active === l.href.slice(1) ? styles.active : ''
+                    }`}
+                  >
+                    {l.label}
+                  </a>
+                </Magnetic>
               </li>
             ))}
           </ul>
