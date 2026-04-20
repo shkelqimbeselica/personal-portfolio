@@ -1,0 +1,28 @@
+import { useReveal } from './hooks/useReveal'
+import Nav from './components/Nav'
+import Hero from './components/Hero'
+import Work from './components/Work'
+import Stats from './components/Stats'
+import About from './components/About'
+import Stack from './components/Stack'
+import AI from './components/AI'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+
+export default function App() {
+  const ref = useReveal()
+
+  return (
+    <div ref={ref}>
+      <Nav />
+      <Hero />
+      <Work />
+      <Stats />
+      <About />
+      <Stack />
+      <AI />
+      <Contact />
+      <Footer />
+    </div>
+  )
+}

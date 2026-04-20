@@ -1,0 +1,116 @@
+.work { padding: 80px 0; border-bottom: 1px solid var(--border); }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.list { display: flex; flex-direction: column; }
+
+.item {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  gap: 0 40px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+  will-change: transform;
+}
+.item:last-child { border-bottom: none; }
+
+.num {
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  padding-top: 4px;
+  transition: color 0.2s;
+  user-select: none;
+}
+.item:hover .num { color: var(--border-mid); }
+
+.left { display: flex; flex-direction: column; gap: 10px; }
+
+.client {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.context {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.metric {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--accent-dim);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  align-self: flex-start;
+}
+
+.metricAccent { color: var(--accent); }
+
+.right { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+
+.desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-mid);
+  border-radius: 2px;
+  color: var(--text-3);
+}
+.tagHi { border-color: var(--accent-dim); color: var(--accent); }
+
+@media (max-width: 768px) {
+  .item { grid-template-columns: 60px 1fr; grid-template-rows: auto auto; }
+  .right { grid-column: 2; }
+  .num { font-size: 52px; }
+}
+
+@media (max-width: 540px) {
+  .item { grid-template-columns: 1fr; }
+  .num { display: none; }
+}
