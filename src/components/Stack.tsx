@@ -9,23 +9,23 @@ const stack: StackGroup[] = [
   {
     category: 'Core',
     tags: [
-      { label: 'TypeScript' }, { label: 'React' }, { label: 'Redux' },
-      { label: 'JavaScript ES6+' }, { label: 'React Native' }, { label: 'Vue / Vuex' },
+      { label: 'TypeScript', accent: true }, { label: 'React', accent: true }, { label: 'Redux' },
+      { label: 'Next.js', accent: true }, { label: 'React Native' }, { label: 'Vue / Vuex' },
       { label: 'RTK Query' }, { label: 'React Query' }, { label: 'Node.js' },
     ],
   },
   {
     category: 'Styling & UI',
     tags: [
-      { label: 'Tailwind' }, { label: 'Shadcn/ui' }, { label: 'SCSS' },
+      { label: 'Tailwind', accent: true }, { label: 'Shadcn/ui', accent: true }, { label: 'SCSS' },
       { label: 'Bootstrap' }, { label: 'HTML5 / CSS3' },
     ],
   },
   {
     category: 'APIs & Testing',
     tags: [
-      { label: 'GraphQL' }, { label: 'REST' }, { label: 'Firebase' },
-      { label: 'Jest' }, { label: 'Vitest' }, { label: 'Zod' },
+      { label: 'GraphQL', accent: true }, { label: 'REST' }, { label: 'Firebase' },
+      { label: 'Vitest', accent: true }, { label: 'Jest' }, { label: 'Zod', accent: true },
       { label: 'NX' }, { label: 'Git' },
     ],
   },
