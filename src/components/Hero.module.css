@@ -138,21 +138,26 @@
 .marqueeItem {
   display: inline-flex;
   align-items: center;
-  padding: 0 28px;
+  justify-content: center;
+  width: 100px;
+  height: 32px;
+  margin: 0 16px;
+  flex-shrink: 0;
 }
 
 .logo {
-  height: 20px;
+  max-height: 100%;
+  max-width: 100%;
   width: auto;
-  max-width: 90px;
+  height: auto;
   object-fit: contain;
-  opacity: 0.45;
+  opacity: 0.6;
   filter: brightness(0) invert(1);
   transition: opacity 0.3s;
 }
 
 .marqueeItem:hover .logo {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 @keyframes marqueeScroll {
@@ -212,6 +217,5 @@
   .marqueeWrap { margin-top: 28px; padding: 0 var(--pad-x); gap: 16px; }
   .marqueeLabel { display: none; }
   .marqueeTrack { width: 100%; }
-  .marqueeItem { padding: 0 18px; }
-  .logo { height: 16px; max-width: 72px; }
+  .marqueeItem { width: 80px; height: 26px; margin: 0 12px; }
 }
