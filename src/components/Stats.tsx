@@ -17,9 +17,8 @@ const stats: StatData[] = [
   { value: 5, suffix: '', label: 'Global enterprise clients shipped to' },
 ]
 
-function CountUp({ value, suffix, accent }: { value: number; suffix: string; accent?: boolean }) {
+function CountUp({ value, suffix, accent, delay = 0 }: { value: number; suffix: string; accent?: boolean; delay?: number }) {
   const [count, setCount] = useState(0)
-  const [done, setDone] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
@@ -31,25 +30,23 @@ function CountUp({ value, suffix, accent }: { value: number; suffix: string; acc
     const stepTime = duration / steps
     let current = 0
 
-    const timer = setInterval(() => {
-      current++
-      const progress = current / steps
-      // spring-like overshoot ease
-      const eased = progress < 0.8
-        ? 1 - Math.pow(1 - progress * 1.25, 4)
-        : 1 + Math.sin((progress - 0.8) * Math.PI * 5) * 0.02 * (1 - progress) * 5
+    const timeout = setTimeout(() => {
+      const timer = setInterval(() => {
+        current++
+        const progress = current / steps
+        const eased = 1 - Math.pow(1 - progress, 3)
 
-      setCount(Math.round(Math.min(eased, 1.05) * value))
+        setCount(Math.round(eased * value))
 
-      if (current >= steps) {
-        setCount(value)
-        setDone(true)
-        clearInterval(timer)
-      }
-    }, stepTime)
+        if (current >= steps) {
+          setCount(value)
+          clearInterval(timer)
+        }
+      }, stepTime)
+    }, delay * 1000)
 
-    return () => clearInterval(timer)
-  }, [inView, value])
+    return () => clearTimeout(timeout)
+  }, [inView, value, delay])
 
   return (
     <motion.div
@@ -59,13 +56,7 @@ function CountUp({ value, suffix, accent }: { value: number; suffix: string; acc
       animate={inView ? { filter: 'blur(0px)', opacity: 1 } : {}}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <motion.span
-        animate={done ? { scale: [1, 1.08, 1] } : {}}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        style={{ display: 'inline-block' }}
-      >
-        {count}{suffix}
-      </motion.span>
+      {count}{suffix}
     </motion.div>
   )
 }
@@ -90,9 +81,9 @@ export default function Stats() {
         whileInView="visible"
         viewport={{ once: true, margin: '-40px' }}
       >
-        {stats.map((s) => (
+        {stats.map((s, i) => (
           <motion.div key={s.label} className={styles.item} variants={item}>
-            <CountUp value={s.value} suffix={s.suffix} accent={s.accent} />
+            <CountUp value={s.value} suffix={s.suffix} accent={s.accent} delay={i * 0.2} />
             <div className={styles.label}><TextScramble text={s.label} /></div>
           </motion.div>
         ))}
