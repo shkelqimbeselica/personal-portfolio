@@ -16,7 +16,7 @@ export default function Contact() {
               <Magnetic strength={0.15} style={{ display: 'block' }}>
                 <a className={styles.row} href="mailto:beselicashkelqim@gmail.com">
                   <div>
-                    <div className={styles.rowLabel}>Email</div>
+                    <div className={styles.rowLabel}><TextScramble text="Email" /></div>
                     <div className={styles.rowValue}>beselicashkelqim@gmail.com</div>
                   </div>
                   <span className={styles.arrow}>→</span>
@@ -32,7 +32,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                 >
                   <div>
-                    <div className={styles.rowLabel}>LinkedIn</div>
+                    <div className={styles.rowLabel}><TextScramble text="LinkedIn" /></div>
                     <div className={styles.rowValue}>linkedin.com/in/shkelqimbeselica</div>
                   </div>
                   <span className={styles.arrow}>→</span>
@@ -42,7 +42,7 @@ export default function Contact() {
             <Reveal delay={0.16}>
               <div className={`${styles.row} ${styles.rowStatic}`}>
                 <div>
-                  <div className={styles.rowLabel}>Location</div>
+                  <div className={styles.rowLabel}><TextScramble text="Location" /></div>
                   <div className={styles.rowValue}>Prishtina, Kosovo</div>
                 </div>
               </div>

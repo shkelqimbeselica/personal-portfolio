@@ -3,6 +3,13 @@ import { useInView } from 'framer-motion'
 
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*'
 
+function scramble(text: string) {
+  return text
+    .split('')
+    .map((c) => (c === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)]))
+    .join('')
+}
+
 interface Props {
   text: string
   className?: string
@@ -13,7 +20,7 @@ interface Props {
 export default function TextScramble({ text, className, as: Tag = 'span', delay = 0 }: Props) {
   const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-20px' })
-  const [display, setDisplay] = useState(text)
+  const [display, setDisplay] = useState(() => scramble(text))
   const hasRun = useRef(false)
 
   useEffect(() => {

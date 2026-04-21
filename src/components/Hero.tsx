@@ -43,8 +43,8 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease }}
           >
-            <div className={styles.asideItem}>7 yrs production React</div>
-            <div className={`${styles.asideItem} ${styles.accent}`}>BSc AI in progress</div>
+            <div className={styles.asideItem}><TextScramble text="7 yrs production React" delay={0.4} /></div>
+            <div className={`${styles.asideItem} ${styles.accent}`}><TextScramble text="BSc AI in progress" delay={0.5} /></div>
           </motion.div>
         </div>
       </div>

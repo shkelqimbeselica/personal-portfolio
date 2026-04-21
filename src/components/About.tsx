@@ -41,7 +41,7 @@ export default function About() {
             <div className={styles.facts}>
               {facts.map((f) => (
                 <div key={f.label} className={styles.factItem}>
-                  <div className={styles.factLabel}>{f.label}</div>
+                  <div className={styles.factLabel}><TextScramble text={f.label} /></div>
                   <div className={styles.factValue}>{f.value}</div>
                 </div>
               ))}

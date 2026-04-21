@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, type Variants } from 'framer-motion'
+import TextScramble from './TextScramble'
 import styles from './Stats.module.css'
 
 interface StatData {
@@ -92,7 +93,7 @@ export default function Stats() {
         {stats.map((s) => (
           <motion.div key={s.label} className={styles.item} variants={item}>
             <CountUp value={s.value} suffix={s.suffix} accent={s.accent} />
-            <div className={styles.label}>{s.label}</div>
+            <div className={styles.label}><TextScramble text={s.label} /></div>
           </motion.div>
         ))}
       </motion.div>
